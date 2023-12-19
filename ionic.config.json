@@ -1,0 +1,14 @@
+{
+  "name": "foodbook",
+  "defaultBrowser": "chrome",
+  "app_id": "",
+  "gulpStartupTasks": [
+    "sass",
+    "watch"
+  ],
+  "watchPatterns": [
+    "www/**/*",
+    "!www/lib/**/*"
+  ],
+  "type": "ionic1"
+}

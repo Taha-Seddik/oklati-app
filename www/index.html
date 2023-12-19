@@ -1,0 +1,695 @@
+﻿<!DOCTYPE html>
+<html ng-app="foodbook" >
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
+    <title></title>
+	
+	
+	<style>
+.notFound{
+
+/* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#ffd65e+0,febf04+100;Yellow+3D+%232 */
+background: rgb(255,214,94); /* Old browsers */
+background: -moz-linear-gradient(top,  rgba(255,214,94,1) 0%, rgba(254,191,4,1) 100%); /* FF3.6-15 */
+background: -webkit-linear-gradient(top,  rgba(255,214,94,1) 0%,rgba(254,191,4,1) 100%); /* Chrome10-25,Safari5.1-6 */
+background: linear-gradient(to bottom,  rgba(255,214,94,1) 0%,rgba(254,191,4,1) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffd65e', endColorstr='#febf04',GradientType=0 ); /* IE6-9 */
+
+
+}
+
+.button-bar > .button:last-child {
+  border-radius: 0px 20px 20px 0px !important;
+}
+.button-bar > .button:first-child {
+    border-radius: 20px 0px 0px 20px !important;
+}
+
+
+	
+	.greenSt{
+	
+/* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#45484d+0,000000+100;Black+3D+%231 */
+background: rgb(69,72,77); /* Old browsers */
+background: -moz-linear-gradient(top,  rgba(69,72,77,1) 0%, rgba(0,0,0,1) 100%); /* FF3.6-15 */
+background: -webkit-linear-gradient(top,  rgba(69,72,77,1) 0%,rgba(0,0,0,1) 100%); /* Chrome10-25,Safari5.1-6 */
+background: linear-gradient(to bottom,  rgba(69,72,77,1) 0%,rgba(0,0,0,1) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#45484d', endColorstr='#000000',GradientType=0 ); /* IE6-9 */
+
+}
+
+.float-button {
+ 
+/* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#45484d+0,000000+100;Black+3D+%231 */
+background: rgb(69,72,77); /* Old browsers */
+background: -moz-linear-gradient(top,  rgba(69,72,77,1) 0%, rgba(0,0,0,1) 100%); /* FF3.6-15 */
+background: -webkit-linear-gradient(top,  rgba(69,72,77,1) 0%,rgba(0,0,0,1) 100%); /* Chrome10-25,Safari5.1-6 */
+background: linear-gradient(to bottom,  rgba(69,72,77,1) 0%,rgba(0,0,0,1) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#45484d', endColorstr='#000000',GradientType=0 ); /* IE6-9 */
+
+opacity: 0.9;
+color: white;
+border-radius: 50%;
+/*border-radius:15% 0 0 0;*/
+width: 30px;
+padding: 25px;
+font-size: 40px;
+position: fixed;
+margin-left:30px;
+margin-top:5px;
+z-index: 1000;
+}
+ 
+.float-button .height_fix {
+  
+  border: 1px solid red;
+}
+ 
+.float-button .content {
+  position: absolute;
+  left: 0;
+  top: 50%;
+  height: 100%;
+  width: 100%;
+  text-align: center;
+  margin-top: -20px;
+  color: white;
+}
+
+.settingProfileImg {
+    margin: 5% 10% 1% 10%;
+    width: 30%;
+    height: 30%;
+    border-radius: 50%;
+    background-position: center;
+    background-size: cover;
+}
+
+	</style>
+
+    
+	
+	
+	 <!-- compiled css output -->
+	<link href="css/animate.css" rel="stylesheet">
+    <link href="css/ionic.app.css" rel="stylesheet">
+	<link href="css/style.css" rel="stylesheet">
+	<link rel="stylesheet" href="css/normalize.css">
+    <link rel="stylesheet" href="css/styles.css">
+	<link href="lib/ionic-filter-bar/dist/ionic.filter.bar.min.css" rel="stylesheet">  
+
+	
+	
+    <!-- ionic/angularjs js -->
+    <script src="lib/ionic/js/ionic.bundle.js"></script>
+	<script src="lib/ngstorage/ngStorage.min.js"></script>	
+  
+
+	<!-- Firebase -->
+	<script src="js/firebase.js"></script>
+
+	<!-- AngularFire -->
+	<script src="js/angularfire.js"></script>
+	
+	<!-- This is what you should add, the cordova below you'll already have -->
+	<script src="lib/ngCordova/dist/ng-cordova.min.js"></script>
+	<script src="lib/ionic-modal-select/src/ionic-modal-select.js"></script>
+	<script src="cordova.js"></script>
+	<!-- cordova script (this will be a 404 during development) -->
+    
+
+    <!-- your app's js -->
+	<script src="lib/ionic-filter-bar/dist/ionic.filter.bar.min.js"></script>  
+    <script src="js/app.js"></script>
+    <script src="js/services.js"></script>
+	<script src="js/localService.js"></script>
+	<script src="js/JsonService.js"></script>
+	<script src="js/controller.js"></script>
+
+  </head>
+  <body ng-controller="MyController" >
+	<ion-side-menus>
+	  
+  
+	  <ion-side-menu-content>
+	  <ion-nav-bar class="bar-dark " align-title="center" >
+	  <ion-nav-buttons side="right">
+	  <button menu-toggle="right"  class="button button-icon button-clear ion-navicon "></button>
+	  
+	  </ion-nav-buttons>
+	  
+		  <ion-nav-back-button> </ion-nav-back-button>
+	  </ion-nav-bar>
+	  <ion-nav-view></ion-nav-view>
+	  </ion-side-menu-content>
+	  
+	  <!-- Left menu -->
+	  <ion-side-menu side="right">
+	  
+	  <ion-header-bar style="padding:0 !important;" >
+		<div class="napeBar" ></div>
+		
+		  
+		</ion-header-bar>
+	  
+	  <ion-content style="margin-top:0;" class="menuBack "  >
+	  <div>
+	 
+	  <ion-list >
+			
+		  <ion-item menu-close href="#/" class="Title  item-icon-right titan" > 
+		  
+			 الصفحة الرئيسيّة
+			 
+			<i style="margin-left:15px;" class="icon ion-home stable  "></i>
+		  </ion-item>	
+				
+		  <ion-item menu-close href="#/favorite" class="  item-icon-right  Title titan">
+		 
+			الوجبات المفضلة
+			 <i style=""class="icon ion-star stable  "></i>
+		
+		  </ion-item>
+		
+           <ion-item menu-close href="#/info" class="  item-icon-right  Title titan">
+		 
+			قاموس لمصطلحات الطبخ
+			 <i style=""class="icon ion-android-list stable  "></i>
+		
+		  </ion-item>		
+			
+		  <ion-item menu-close href="#/taha" class="  item-icon-right  Title titan">
+		 
+			عن التطبيق
+			 <i style=""class="icon ion-iphone stable  "></i>
+		
+		  </ion-item>	
+			
+	  </ion-list>
+	  
+	 
+	</div>
+	<div  ></div>
+	
+	  </ion-content>
+	  
+	  
+	  <!-- Left menu -->
+	</ion-side-menus>  
+  
+ <!-- Templates -->
+    
+ <!--home.html -->
+ <script type = "text/ng-template" id = "home.html" >
+      <ion-view style="text-align:center;" view-title="أكلتي" >
+        <ion-content 
+		class="myContent napeBack" ng-controller="MyController"  >
+		<div align="center" >
+		
+          
+		  <div>
+		  <br>
+		  <div style="margin-top:60px;"  class="col animated rollIn "><img  src="img/3.png" style="width:90%;height:90%;"class="full-image"  ></div>
+		  
+		   
+		  
+           <!-- <div  ><div class="col" ><a style="color:white;border-radius:0;" class="button button-balanced Title " ui-sref="searchList({foo: ''})"><p >جميع الوصفات</p></a></div></div>-->
+          
+		  
+		  <br>
+		  
+		<div style="margin-top:20px;" class="row " >
+			  <div class="col animated flipInX" >
+			  <button style="color:white;height:70px;width:300px;" class="button button-dark  Title" ng-click="modal.show()">
+			  <i class=" icon ion-fork" style="margin-right:20px;height:60px;"></i>
+			  إعرض الوجبات
+			   <i class=" icon ion-spoon" style="margin-left:20px;"></i>
+			</button>
+			   </div>
+		
+		<!--<div class="col" ><a style="color:white;" class="button button-dark   Title " ui-sref="searchList" ><p >حساسية الجلوتين</p></a></div>-->
+		</div>
+			
+			
+			
+           </div>
+	    </div>
+		
+        </ion-content>
+      </ion-view>
+    </script>
+
+					<!-- modal -->
+					<script id="my-modal.html" type="text/ng-template">
+				  <ion-modal-view  class="mymodal"  >
+					<ion-header-bar class="bar bar-header bar-dark">
+					  <h1 style="text-align:center;" class="title">هل لديك حساسية ؟</h1>
+					  <button class="button button-clear button-icon ion-android-close" ng-click="modal.hide()"></button>
+					</ion-header-bar>
+					<ion-content  style="background: #e6e6e6;"> <!--ng-controller="MainCtrl"-->
+					
+				  
+				  <div class = "row outer-container">
+					
+					<div class="col inner-container "  >
+					<div class="centered-content">
+					<ion-list>
+					  <ion-radio style="text-align:center;"  ng-model="allergieName" ng-value=""><p class="sousTitle">ليس لدي حساسية</p></ion-radio>	
+					  <ion-radio style="text-align:center;"  ng-model="allergieName" ng-value="'celiac'"><p class="sousTitle"> حساسيّة من الجلوتين </p></ion-radio>
+					  
+					  
+					</ion-list>
+					<br>
+					 <a class="button button-dark  icon-left ion-search  Title " ui-sref="searchList({foo: allergieName})" ng-click="modal.hide()" >إبحث</a>
+					<br><br>
+				</div>
+				  </div>
+				  
+				  </div>
+				 <!-- <a style="color:white;" class="button button-dark   Title " ui-sref="searchList" ><p >حساسية الجلوتين</p></a>-->
+				  
+				 
+			  <!--<div class="item button button-block button-positive" ng-model="addButton" ng-disabled="!allergieName" ng-click="submitSearch()" > إبحث </div>-->
+				 
+				  
+				  <!--<button ng-disabled="!user.answer" ng-click="submitAnswer(user)">Submit</button>-->
+					</ion-content>
+				  </ion-modal-view>
+				</script>
+	
+	
+	
+	
+	
+	
+	
+	<!-- search list -->
+    <script type = "text/ng-template" id = "searchList.html" >
+      <ion-view   view-title="نتيجة البحث" > <!--ng-controller="MainCtrl"-->
+	  
+	  
+	  <ion-nav-buttons side="secondary">
+	  <button class="buttons button-icon custom-icon ion-android-search" ng-click="showFilterBar()"></button>
+	 </ion-nav-buttons>
+        <ion-content >
+		<ion-refresher
+			pulling-text="إسحب للتحديث الصفحة..."
+			on-refresh="doRefresh()">
+		  </ion-refresher>
+		
+		
+          <ion-list >
+		 
+		<div class="button-bar" ng-model="search" >
+		<a style="font-size:15px;border-radius:0 !important;"  class="button sousTitle button-stable animated slideInDown " modal-select="" ng-model="search" options="selectables" modal-title="إختر الصنف" >
+		إختر الصنف
+		<div class="option sousTitle">
+		  <span class="sousTitle" style="font-size:15px;text-align:center;direction:rtl;">{{option}}</span>
+		</div>
+		
+		</a>
+		 <a style="font-size:15px;border-radius:0 !important;"  class="button sousTitle button-stable animated slideInDown " modal-select="" ng-model="search2" options="selectables2" modal-title="إختر الوصفة" >
+		 إختر البلد
+		 <div class="option sousTitle" style="text-align:center !important;" >
+		  <span class="sousTitle wasafat" style="font-size:16px;direction:rtl;">  وصفات  {{option}}  </span>
+		</div>
+		 </a> 
+		</div>
+		
+		
+		<!--
+		
+		<div class="button-bar" ng-model="search" >
+		  <a style="font-size:15px;border-radius:0 !important;"  class="button sousTitle button-stable animated slideInDown" ng-click="assignSearch('soup')" >حساء</a>
+		  <a style="font-size:15px;" class="button sousTitle button-stable animated slideInDown" ng-click="assignSearch('dinner')">غداء</a>
+		  <a style="font-size:15px;" class="button sousTitle button-stable animated slideInDown" ng-click="assignSearch('candy')">حلويّات</a>
+		  <a style="font-size:15px;border-radius:0 !important;" class="button sousTitle button-stable animated slideInDown" ng-click="assignSearch('bread')">مخبوزات</a>
+		</div>
+		
+		<div class="button-bar" ng-model="search2" >
+		  <a style="font-size:15px;border-radius:0 !important;"  class="button sousTitle button-stable animated slideInDown" ng-click="assignSearch2('tunisia')" >أكلات تونسية</a>
+		  <a style="font-size:15px;" class="button sousTitle button-stable animated slideInDown" ng-click="assignSearch2('Algeria')">أكلات جزائريّة</a>
+		  
+		</div>
+		<div class="item item-divider"></div>
+        <div class="item item-text-wrap">
+          List of numbers.
+        </div>
+        <div class="item item-body">
+          <button class="button button-positive" modal-select="" ng-model="search2" options="selectables" modal-title="إختر البلد">
+            Select it
+            <div class="option">
+              {{option}}
+            </div>
+          </button>
+		<div class="item">
+          model: {{search2}} 
+        </div>
+		
+		-->
+		
+		<a  ng-repeat="recipe in recipes  | filter:{category: search} | filter:{country:search2 }" class="item item-thumbnail-right item-text-wrap " style="text-decoration: none; " ui-sref="singleSearch({val:recipe.id})" nav-direction="enter">
+		 
+		<img ng-src="{{recipe.imageURL}}">
+		<h2 class="sousTitle dark animated flipInX" style="direction:rtl;">{{recipe.title}}</h2>
+		<p  class="sousTitle animated flipInX" style="direction:rtl;"> <i class="icon ion-clock "></i> {{recipe.time}} </p>
+		<p  class="sousTitle animated flipInX" style="direction:rtl;">  الوصفة : {{recipe.country}}    </p>
+		</a>
+			 
+			
+          </ion-list>
+		 
+        </ion-content>
+      </ion-view>
+    </script>
+    
+    
+	
+	<!-- single Search recipe -->
+    <script type = "text/ng-template" id = "singleAfterSearch.html" >
+      <ion-view view-title="{{singleRecipe.title}}" >
+	  
+    <ion-content>
+		 
+		<div align="center">
+			 
+			<img ng-src="{{singleRecipe.imageURL}}" style="width:100%; height:250px !important; max-height: 300px !important; display: block;">
+			<br>
+			<!-- FAVORITE BUTTON-->	
+			<div class="float-button animated slideInDown" >
+				 <span class="height-fix">
+					<a ng-click="add(singleRecipe)" class="content">
+					
+					  <i class="ion-star energized"> </i>
+					</a>
+					</span>
+			</div>
+			
+		</div>
+		
+		<div >
+          
+		<div  class="card animated fadeIn">
+			  
+		
+			  <div class="item item-divider  greenSt" >
+				<h2 class="sousTitle" style="direction:rtl;color:white;">   المكونات</h2>
+			  </div>
+			<div class="item item-text-wrap">	
+			<ul style="direction:rtl;list-style-type:decimal; margin-right:20px;">
+				<li  class="texte animated flipInX" ng-repeat=" ingre in singleRecipe.ingredients">
+				
+				{{ ingre.quantity }} {{ ingre.weight }} {{ingre.name}}
+				
+				</li>
+			</ul>
+          
+			</div>
+			  
+		</div>
+		
+		<!-- INFO BUTTON-->	
+		<div class="float-button1 animated slideInDown"  >
+		 <span class="height-fix">
+			<a ui-sref="info"  class="content">
+			
+			  <i class="ion-help-circled light"> </i>
+			</a>
+			</span>
+		</div>  
+		 <!-- / INFO BUTTON-->	 
+		 
+		<div class="card animated fadeIn">
+			 
+		  <div class="item item-divider greenSt" style="border-radius:0;">
+		  <h2 class="sousTitle" style="direction:rtl;color:white;" > طريقة التحضير</h2>
+		  </div>
+		  
+		  
+		 <div class="item item-text-wrap" style=""> 
+			<ul  style="direction:rtl;list-style-type:decimal; margin-right:20px;">
+				<li class="texte animated flipInX" ng-repeat=" step in singleRecipe.steps">{{ step }}</li>
+			</ul>
+		  
+			</div>
+		</div>
+		  
+          </div>
+		  
+		  <br>
+		  <br>
+    </ion-content>
+		
+		
+		
+      </ion-view>
+    </script>
+	
+	<!-- favorite.html -->
+	
+	
+	
+    <script type = "text/ng-template" id = "favorite.html" >
+      <ion-view view-title="المفضلة">
+        <ion-content>
+         
+		 
+		 <div ng-if="!(things | isEmpty)">
+		 
+		 
+		<ion-list>
+		 
+				
+		<a  ng-repeat="recipe in things track by $index" class="item item-thumbnail-right item-text-wrap" style="text-decoration: none; " ui-sref="singleLocal({val:recipe.id})" nav-direction="enter">
+		 
+		<img ng-src="{{recipe.imageURL}}">
+		<h2 class="sousTitle" style="direction:rtl;">{{recipe.title}}</h2>
+		
+		<p  class="sousTitle" style="direction:rtl;"> <i class="icon ion-clock "></i> {{recipe.time}} </p>
+		<p  class="sousTitle animated flipInX" style="direction:rtl;">  الوصفة : {{recipe.country}}  
+		<!--<button class="button button-light icon ion-close-circled" style="float:left;" ng-click="remove($index)"></button>-->
+		<button class="button button-light icon ion-close-circled" style="float:left;" ng-click="remove(recipe.id)"></button>
+		
+		</p>
+		
+		
+		
+		
+		</a>
+			 
+			
+         </ion-list>
+		 
+		 
+		</div>
+		
+		<div ng-if="things | isEmpty">
+		 
+
+		
+		
+		<div class="card ">
+			<div class="item item-text-wrap titan " style="">
+			<p  class="sousTitle " style="direction:rtl;text-align:center;font-size:20px;color:white;"> لا يوجد لديك وجبات مفضّلة </p>
+		  </div>
+		</div>
+
+		
+		</div>
+		 
+		
+		 
+        </ion-content>
+      </ion-view>
+    </script>
+    
+	
+	<!-- single Local recipe -->
+    <script type = "text/ng-template" id = "singleLocal.html" >
+      <ion-view  view-title="{{singleRecipe.title}}" > 
+	  
+    <ion-content>
+		 
+		<div align="center">
+			 
+			<img ng-src="{{singleRecipe.imageURL}}" style="width:100%; height:250px !important; max-height: 300px !important; display: block;">
+			<br>
+			
+			
+		</div>
+		
+		<div>
+          
+		<div  class="card animated fadeIn">
+			  
+		
+			  <div class="item item-divider  greenSt" >
+				<h2 class="sousTitle" style="direction:rtl;color:white;">   المكونات</h2>
+			  </div>
+			<div class="item item-text-wrap">	
+			<ul style="direction:rtl;list-style-type:decimal; margin-right:20px;">
+				<li  class="texte animated flipInX" ng-repeat=" ingre in singleRecipe.ingredients">
+				
+				{{ ingre.quantity }} {{ ingre.weight }} {{ingre.name}}
+				
+				</li>
+			</ul>
+          
+			</div>
+			  
+		</div>
+		
+		<!-- INFO BUTTON-->	
+		<div class="float-button1 animated slideInDown"  >
+		 <span class="height-fix">
+			<a ui-sref="info"  class="content">
+			
+			  <i class="ion-help-circled light"> </i>
+			</a>
+			</span>
+		</div>  
+		 <!-- / INFO BUTTON-->	 
+		 
+		<div class="card animated fadeIn">
+			 
+		  <div class="item item-divider greenSt" style="border-radius:0;">
+		  <h2 class="sousTitle" style="direction:rtl;color:white;" > طريقة التحضير</h2>
+		  </div>
+		  
+		  
+		 <div class="item item-text-wrap" style=""> 
+			<ul  style="direction:rtl;list-style-type:decimal; margin-right:20px;">
+				<li class="texte animated flipInX" ng-repeat=" step in singleRecipe.steps">{{ step }}</li>
+			</ul>
+		  
+			</div>
+		</div>
+		  
+          </div>
+		  
+		  <br>
+		  <br>
+    </ion-content>
+		
+		
+		
+      </ion-view>
+    </script>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<!-- Info.html -->
+	<script type = "text/ng-template" id = "info.html" >
+      <ion-view view-title="مصطلحات الطبخ">
+        <ion-content> 
+         
+		<ion-list>
+		
+        
+			<div class="list list-inset">
+			
+			
+			  <label class="item item-input item-icon-right ">
+				<i class="icon   ion-search placeholder-icon"></i>
+				<!--<input type="text" placeholder="Search">-->
+				<input class="sousTitle" style="margin-right:20px;direction:rtl;font-size:15px;color:black;" type="text" ng-model="searchText"  placeholder="إبحث عن إسم المكوّن">
+				
+			  </label>
+			</div>
+		
+         <!--<ion-item class="item-avatar" ng-repeat="item in items | filter:searchText">
+            <img src="{{item .imgURL}}">           
+            <h2>{{item .name}}</h2>
+            <p>{{item .info}}
+                    
+          </ion-item> -->
+		  
+	<div class="card" ng-repeat="item in items | filter:{name:searchText} ">
+	   <div class="item  sousTitle" style="border-radius:0 !important;"  >
+		  <h1 class="sousTitle" style="direction:rtl;font-size:20px;color:black;text-align:center;">{{item.name}}</h1>
+	   </div>
+		
+		<div class="item item-image">
+		<img style="max-height:200px;" src="{{item.imgURL}}">
+		</div>
+		
+		<ion-item class="item item-text-wrap">
+			<div ng-class="isItemShown(item) ? 'item-expand active' : 'item-expand inactive'" >
+			  <h2 class="sousTitle " style="direction:rtl;font-size:20px;color:gray;"> معلومات : </h2>
+			 <p class="texte" style="direction:rtl;font-size:15px;margin-top:6px;"> {{item.info}} </p>
+			 </div>
+			
+		  <div ng-click="toggleItem(item)" class="expand-item sousTitle"  style="font-size:15px;">
+            <i ng-class="isItemShown(item) ? 'ion-ios-minus-outline ' : 'ion-ios-plus-outline '"></i>
+            <span style="margin-left:3px;">{{ isItemShown(item) ? 'أخفي' : 'المزيد' }}</span>
+          </div>
+		</ion-item> 
+	</div>
+	
+
+
+
+
+		  
+      </ion-list>
+		 
+        </ion-content>
+      </ion-view>
+    </script>
+	
+  </body>
+</html>
+
+
+
+<!-- taha.html -->
+	<script type = "text/ng-template" id = "taha.html" >
+      <ion-view view-title="أكلتي">
+        <ion-content class="napeBar ">
+
+		
+        
+		
+		<div class="card" style="">
+		<div class="item titan3 "   >
+			<h1 class="sousTitle" style="direction:rtl;font-size:25px;text-align:center;color:white;" >   تصميم و برمجة : </h1>
+		  </div>
+		
+		  <div class="item item-text-wrap  " style="" >
+		  
+		  <div align="center"><img style="width:50%;height:50%;"class="full-image"  src="img/me.png"></div> <br>
+		  
+			<p class="sousTitle" style="direction:rtl;font-size:25px;text-align:center;">  للمراسلة :  </p><br>
+
+			<p class="eel"  style="font-size:20px;text-align:center;"><b>  taha.seddik1992@gmail.com </b> </p>
+
+		  </div>
+		  
+		  
+		</div>
+		
+		
+		
+		 
+        </ion-content>
+      </ion-view>
+    </script>
+	
+  </body>
+</html>
+
+
+
