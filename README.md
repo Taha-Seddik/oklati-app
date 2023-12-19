@@ -1,5 +1,5 @@
 # Oklati app 
-contains best recipes in arabic countries 
+Contains best recipes in arabic countries 
 
 # Screenshots
 
